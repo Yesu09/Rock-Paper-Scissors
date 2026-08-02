@@ -5,9 +5,6 @@
 }
 
 body {
-    background: rgb(25, 25, 25);
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
     display: grid;
     justify-items: center;
@@ -15,9 +12,35 @@ body {
     gap: 20px;
     padding: 20px;
     text-align: center;
+    color: white;
+    font-family: "Poppins", Arial, sans-serif;
+
+    background: linear-gradient(
+        -45deg,
+        #0f172a,
+        #1e3a8a,
+        #312e81,
+        #0f172a
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
 }
 
-/* Make the three move buttons appear in one row */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Button positions */
 .move-button:nth-of-type(1) {
     grid-column: 1;
     grid-row: 2;
@@ -35,11 +58,16 @@ body {
 
 .title {
     grid-column: 1 / 4;
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-shadow:
+        0 0 3px rgba(96, 165, 250, 0.4),
+        0 0 8px rgba(37, 99, 235, 0.25);
 }
 
+/* Full width elements */
 .result,
 .js-moves,
 .score,
@@ -49,100 +77,118 @@ body {
     grid-column: 1 / 4;
 }
 
+/* Game buttons */
+
 .move-button {
-    background: transparent;
-    border: 3px solid white;
     width: 130px;
     height: 130px;
     border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.4);
+
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(15px);
+
     cursor: pointer;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .move-button:hover {
-    transform: scale(1.08);
-    background: rgba(255,255,255,0.08);
+    transform: translateY(-8px) scale(1.08);
+    border-color: #60a5fa;
+    box-shadow:
+        0 0 20px rgba(96,165,250,.6),
+        0 0 40px rgba(96,165,250,.3);
 }
 
 .move-button:active {
-    transform: scale(0.95);
+    transform: scale(.95);
 }
 
 .move-icon {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
+    width: 65px;
+    height: 65px;
 }
+
+/* Text */
 
 .result {
     font-size: 2rem;
     font-weight: bold;
-    min-height: 40px;
+    color: #38bdf8;
 }
 
-.js-moves {
-    font-size: 1.2rem;
-    line-height: 1.6;
-}
-
+.js-moves,
 .score {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     line-height: 1.8;
 }
+
+/* Bottom buttons */
 
 .reset-button,
 .auto-play-button,
 .js-yes-btn,
 .js-no-btn {
-    background: white;
-    color: black;
+
+    padding: 12px 24px;
+    margin: 6px;
+
     border: none;
-    padding: 12px 22px;
+    border-radius: 50px;
+
+    background: linear-gradient(90deg,#3b82f6,#2563eb);
+    color: white;
+
     font-size: 1rem;
-    font-weight: bold;
-    border-radius: 8px;
+    font-weight: 600;
+
     cursor: pointer;
-    margin: 5px;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .reset-button:hover,
 .auto-play-button:hover,
 .js-yes-btn:hover,
 .js-no-btn:hover {
-    background: rgb(220,220,220);
-    transform: translateY(-2px);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 15px rgba(59,130,246,.6);
 }
 
-.js-warn {
-    font-size: 1rem;
+.js-warn{
+    font-size:1rem;
 }
 
 /* Tablet */
-@media (max-width: 768px) {
 
-    .move-button {
-        width: 110px;
-        height: 110px;
+@media (max-width:768px){
+
+    .move-button{
+        width:110px;
+        height:110px;
     }
 
-    .move-icon {
-        width: 50px;
-        height: 50px;
+    .move-icon{
+        width:55px;
+        height:55px;
     }
 
-    .result {
-        font-size: 1.7rem;
+    .title{
+        font-size:2.6rem;
     }
+
 }
 
 /* Mobile */
-@media (max-width: 480px) {
 
-    body {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        padding: 15px;
+@media(max-width:480px){
+
+    body{
+        grid-template-columns:repeat(3,1fr);
+        gap:15px;
+        padding:15px;
     }
 
     .title,
@@ -151,32 +197,32 @@ body {
     .score,
     .reset-button,
     .auto-play-button,
-    .js-warn {
-        grid-column: 1 / 4;
+    .js-warn{
+        grid-column:1/4;
     }
 
-    .move-button {
-        width: 85px;
-        height: 85px;
+    .move-button{
+        width:90px;
+        height:90px;
     }
 
-    .move-icon {
-        width: 40px;
-        height: 40px;
+    .move-icon{
+        width:42px;
+        height:42px;
     }
 
-    .reset-button,
-    .auto-play-button {
-        width: 100%;
-        max-width: 260px;
-    }
-
-    .result {
-        font-size: 1.5rem;
+    .result{
+        font-size:1.5rem;
     }
 
     .js-moves,
-    .score {
-        font-size: 1rem;
+    .score{
+        font-size:1rem;
+    }
+
+    .reset-button,
+    .auto-play-button{
+        width:100%;
+        max-width:260px;
     }
 }
