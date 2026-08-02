@@ -1,47 +1,182 @@
-body{
-    background-color: rgb(25,25,25);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(25, 25, 25);
     color: white;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Make the three move buttons appear in one row */
+.move-button:nth-of-type(1) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.move-button:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.move-button:nth-of-type(3) {
+    grid-column: 3;
+    grid-row: 2;
 }
 
 .title {
-    font-size: 30px;
+    grid-column: 1 / 4;
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: bold;
+    letter-spacing: 1px;
 }
 
-.move-icon {
-    height: 50px;
+.result,
+.js-moves,
+.score,
+.reset-button,
+.auto-play-button,
+.js-warn {
+    grid-column: 1 / 4;
 }
 
 .move-button {
-    background-color: transparent;
+    background: transparent;
     border: 3px solid white;
-    width: 120px;
-    height: 120px;
-    border-radius: 60px;
-    margin-right: 10px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.move-button:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,0.08);
+}
+
+.move-button:active {
+    transform: scale(0.95);
+}
+
+.move-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
 }
 
 .result {
-    font-size: 25px;
+    font-size: 2rem;
     font-weight: bold;
-    margin-top: 50px;
+    min-height: 40px;
+}
+
+.js-moves {
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
 
 .score {
-    margin-top: 60px;
+    font-size: 1.2rem;
+    line-height: 1.8;
 }
 
-.reset-button, .auto-play-button, .js-yes-btn, .js-no-btn {
-    background-color: white;
+.reset-button,
+.auto-play-button,
+.js-yes-btn,
+.js-no-btn {
+    background: white;
+    color: black;
     border: none;
-    font-size: 15px;
-    padding: 8px 15px;
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
+    margin: 5px;
+    transition: 0.3s;
 }
 
-.js-yes-btn {
-    margin-right: 10px;
+.reset-button:hover,
+.auto-play-button:hover,
+.js-yes-btn:hover,
+.js-no-btn:hover {
+    background: rgb(220,220,220);
+    transform: translateY(-2px);
 }
 
+.js-warn {
+    font-size: 1rem;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+
+    .move-button {
+        width: 110px;
+        height: 110px;
+    }
+
+    .move-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .result {
+        font-size: 1.7rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+    body {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .title,
+    .result,
+    .js-moves,
+    .score,
+    .reset-button,
+    .auto-play-button,
+    .js-warn {
+        grid-column: 1 / 4;
+    }
+
+    .move-button {
+        width: 85px;
+        height: 85px;
+    }
+
+    .move-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .reset-button,
+    .auto-play-button {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .result {
+        font-size: 1.5rem;
+    }
+
+    .js-moves,
+    .score {
+        font-size: 1rem;
+    }
+}
